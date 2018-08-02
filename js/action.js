@@ -11,6 +11,8 @@ $(document).ready(function () {
     })
     .on('blur', '.content', function (e) {
       var isNew = $(this).closest('li').is('.new');
+
+      // create
       if (isNew) {
         var todo = $(e.currentTarget).text();
         todo = todo.trim();
@@ -28,9 +30,17 @@ $(document).ready(function () {
 
         // clear new todo item
         $(e.currentTarget).empty();
-      } else {
+      } // update
+      else {
         $(this).prop('contenteditable', false);
       }
-    });
+    })
+    // delete
+    .on('click', '.delete', function (e) {
+      var result = confirm('do you want to delete?');
+      if (result) {
+        $(this).closest('li').remove();
+      }
+    })
 
 });
