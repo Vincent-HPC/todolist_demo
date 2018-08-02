@@ -42,5 +42,9 @@ $(document).ready(function () {
         $(this).closest('li').remove();
       }
     })
+    // complete
+    .on('click', '.checkbox', function (e) {
+      $(this).closest('li').toggleClass('complete'); // not use addClass()!
+    });
 
 });
