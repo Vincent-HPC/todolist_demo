@@ -47,4 +47,7 @@ $(document).ready(function () {
       $(this).closest('li').toggleClass('complete'); // not use addClass()!
     });
 
+  $('#todo-list').find('ul').sortable({
+    items: 'li:not(.new)',
+  });
 });

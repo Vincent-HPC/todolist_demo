@@ -6,13 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Todo list demo</title>
 
+<!-- rel=relation -->
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- rel=relation -->
   <link rel="stylesheet" href="css/main.css" >
+  
 
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
   <script src="js/handlebars-v4.0.11.js"></script>
-
   <script src="js/action.js"></script>
 
 </head>
