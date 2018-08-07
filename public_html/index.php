@@ -8,30 +8,16 @@
 
   <div id="todo-list">
     <ul>
-      <?php  ?>
-
-      <li>
-        <div class="checkbox"></div>
-        <div class="content">Lorem, ipsum dolor.</div>
-        <div class="actions">
-          <div class="delete">x</div>
-        </div>
-      </li>
-      <li class="complete">
-        <div class="checkbox"></div>
-        <div class="content">Lorem, ipsum dolor.</div>
-        <div class="actions">
-          <div class="delete">x</div>
-        </div>
-      </li>
-      <li>
-        <div class="checkbox"></div>
-        <div class="content">Lorem, ipsum dolor.</div>
-        <div class="actions">
-          <div class="delete">x</div>
-        </div>
-        <!-- clear: both -->
-      </li>
+      <?php  foreach ($todos as $key => $todo): ?>
+        <li data-id="<?= $todo['id'] ?>">
+          <div class="checkbox"></div>
+          <div class="content"><?= $todo['content'] ?></div>
+          <div class="actions">
+            <div class="delete">x</div>
+          </div>
+        </li>
+      <?php endforeach ?>
+      
       <li class="new">
         <div class="checkbox"></div>
         <div class="content" contenteditable="true"></div>
