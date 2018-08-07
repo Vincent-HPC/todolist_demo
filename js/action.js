@@ -18,17 +18,24 @@ $(document).ready(function () {
         todo = todo.trim();
 
         if (todo.length > 0) {
-          todo = {
-            is_complete: false,
-            content: todo,
-          };
-          var li = todoTemplate(todo);
-          $(e.currentTarget).closest('li').before(li);
+          var order = $('#todo-list').find('li:not(.new)').length + 1;
+          // AJAX: create API
+          $.post("todo/create.php", {
+              content: todo,
+              order: order
+            },
+            function (data, textStatus, xhr) {
+              todo = {
+                id: data.id,
+                is_complete: false,
+                content: todo,
+              };
+              var li = todoTemplate(todo);
+              $(e.currentTarget).closest('li').before(li);
+            },
+            "json"
+          );
         }
-        // var context = {title: "My New Post", body: "This is my first post!"};
-        // var html    = template(context);
-
-        // clear new todo item
         $(e.currentTarget).empty();
       } // update
       else {
