@@ -62,15 +62,46 @@ $(document).ready(function () {
     .on('click', '.delete', function (e) {
       var result = confirm('do you want to delete?');
       if (result) {
-        $(this).closest('li').remove();
+        // AJAX call
+        var id = $(this).closest("li").data("id");
+        $.post("todo/delete.php", {
+            id: id
+          },
+          function (data, textStatus, jqXHR) {
+            console.log("delete");
+            $(e.currentTarget).closest('li').remove();
+            // if use$(this).closest.... => here "this" point the func.
+          }
+        );
       }
     })
     // complete
     .on('click', '.checkbox', function (e) {
-      $(this).closest('li').toggleClass('complete'); // not use addClass()!
+      // AJAX call
+      var id = $(this).closest('li').data('id');
+      $.post("todo/complete.php", {
+          id: id
+        },
+        function (data, textStatus, jqXHR) {
+          $(e.currentTarget).closest('li').toggleClass('complete'); // not use addClass()!
+        }
+      );
     });
 
   $('#todo-list').find('ul').sortable({
     items: 'li:not(.new)',
+    stop: function () {
+      var orderPair = [];
+      $('#todo-list').find('li:not(.new)').each(function (index, li) {
+        orderPair.push({
+          id: $(li).data('id'),
+          order: index + 1 // I define index from 1 to ~
+        });
+      });
+
+      $.post("todo/sort.php", {
+        orderPair: orderPair
+      });
+    },
   });
 });
