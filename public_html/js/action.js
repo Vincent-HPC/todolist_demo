@@ -28,11 +28,11 @@ $(document).ready(function () {
         if (todo.length > 0) {
           var order = $('#todo-list').find('li:not(.new)').length + 1;
           // AJAX: create API
-          $.post("todo/create.php", {
+          $.post("todo/create.php", { // send data to create.php
               content: todo,
               order: order
             },
-            function (data, textStatus, xhr) {
+            function (data, textStatus, xhr) { // after ajax code, reiceive data from create.php
               todo = {
                 id: data.id,
                 is_complete: false,
@@ -47,6 +47,14 @@ $(document).ready(function () {
         $(e.currentTarget).empty();
       } // update
       else {
+        // AJAX call
+        var id = $(this).closest('li').data('id');
+        var content = $(this).text();
+        $.post("todo/update.php", { //send data to update.php
+          id: id,
+          content: content
+        });
+
         $(this).prop('contenteditable', false);
       }
     })
