@@ -4,6 +4,14 @@ $(document).ready(function () {
   var source = $('#todo-list-item-template').html();
   var todoTemplate = Handlebars.compile(source);
 
+  // prepare all todo list items
+  var todoListUI = '';
+  $.each(todos, function (index, todo) {
+    todoListUI = todoListUI + todoTemplate(todo);
+  });
+  $('#todo-list').find('li.new').before(todoListUI);
+
+
   // enter editor mode
   $('#todo-list')
     .on('dblclick', '.content', function (e) {
