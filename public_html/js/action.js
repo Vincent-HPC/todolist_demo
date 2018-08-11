@@ -7,7 +7,7 @@ $(document).ready(function () {
   // prepare all todo list items
   var todoListUI = '';
   $.each(todos, function (index, todo) {
-    todoListUI = todoListUI + todoTemplate(todo);
+    todoListUI = todoListUI + todoTemplate(todo); // --> output html strings
   });
   $('#todo-list').find('li.new').before(todoListUI);
 
@@ -60,6 +60,7 @@ $(document).ready(function () {
     })
     // delete
     .on('click', '.delete', function (e) {
+      // confirm is JS inside building library
       var result = confirm('do you want to delete?');
       if (result) {
         // AJAX call
